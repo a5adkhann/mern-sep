@@ -28,17 +28,16 @@ const HeroSection = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[55px] font-bold leading-tight mb-6">
-            Push Your{" "}
+            Defy{" "}
             <span className="bg-gradient-to-r from-[#1E3A8A] via-[#38BDF8] to-[#60A5FA] text-transparent bg-clip-text">
               Limits
             </span>{" "}
-            — <br className="hidden lg:block" /> Transform Your Life.
+            — <br className="hidden lg:block" /> Build a Stronger You.
           </h1>
 
           <p className="text-gray-300 text-base sm:text-lg max-w-lg leading-relaxed">
-            Monitor your workouts, log your nutrition, and visualize your
-            progress.{" "}
-            <span className="text-[#38BDF8] font-semibold">Athletix</span> gives
+            Log workouts, manage nutrition, and track progress effortlessly with AthLetix.{" "}
+            <span className="text-[#38BDF8] font-semibold">AthLetix</span> gives
             you the power to stay consistent and reach your goals.
           </p>
 
@@ -73,8 +72,17 @@ const HeroSection = () => {
           <img
             src="b1.png"
             alt="Fitness Workout"
-            className="w-[250px] sm:w-[350px] md:w-[400px] lg:w-[500px] object-contain drop-shadow-[0_0_25px_rgba(56,189,248,0.35)]"
+            className="
+    w-[250px]
+    sm:w-[350px]
+    md:w-[600px]
+    lg:w-[900px]
+    xl:w-[950px]
+    object-contain
+    drop-shadow-[0_0_25px_rgba(56,189,248,0.35)]
+  "
           />
+
         </motion.div>
 
       </div>

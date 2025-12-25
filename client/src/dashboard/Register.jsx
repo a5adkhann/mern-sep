@@ -1,9 +1,43 @@
-// src/Register.jsx
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import axios from "axios";
+import { useRef } from "react";
 
 export default function Register() {
   const GRADIENT = "linear-gradient(90deg, #1E3A8A, #38BDF8)";
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [cpassword, setCPassword] = useState("");
+  const [image, setImage] = useState(null);
+  const [preview, setPreview] = useState(null);
+  const fileInputRef = useRef(null);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("email", email);
+    formData.append("password", password);
+    formData.append("image", image);
+
+
+    const response = await axios.post("http://localhost:1000/api/register", formData);
+    console.log(response);
+    setName("");
+    setEmail("");
+    setPassword("");
+    setCPassword("");
+    setImage(null);
+    setPreview(null);
+
+    fileInputRef.current.value = "";
+
+    toast.success(response.data.message);
+  };
 
   return (
     <div
@@ -44,12 +78,30 @@ export default function Register() {
             >
               Register
             </div>
-            <button
-              type="button"
-              className="mt-2 px-3 py-1 text-xs rounded-md bg-black/60 border border-[#1E3A8A]/20 text-[#38BDF8] hover:bg-[#38BDF8]/10 transition"
-            >
+            <label className="mt-2 px-3 py-1 text-xs rounded-md bg-black/60 border border-[#1E3A8A]/20 text-[#38BDF8] hover:bg-[#38BDF8]/10 transition cursor-pointer">
               Upload Image
-            </button>
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setImage(file);
+                  setPreview(URL.createObjectURL(file));
+                }}
+                ref={fileInputRef}
+              />
+            </label>
+
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="mt-3 w-20 h-20 rounded-full object-cover border border-[#38BDF8]/40"
+              />
+            )}
+
+
           </div>
         </div>
 
@@ -61,24 +113,24 @@ export default function Register() {
           >
             Join the Team
           </h3>
-          <form className="" noValidate>
+          <form onSubmit={handleSubmit} noValidate encType="multipart/form-data">
             <input
               placeholder="Full name"
-              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4"
+              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4" value={name} onChange={(e) => setName(e.target.value)}
             />
             <input
               placeholder="Email"
-              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4"
+              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4" value={email} onChange={(e) => setEmail(e.target.value)}
             />
             <input
               placeholder="Create password"
               type="password"
-              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4"
+              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4" value={password} onChange={(e) => setPassword(e.target.value)}
             />
             <input
               placeholder="Confirm password"
               type="password"
-              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4"
+              className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none mb-4" value={cpassword} onChange={(e) => setCPassword(e.target.value)}
             />
             <button
               type="submit"

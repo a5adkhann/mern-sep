@@ -76,7 +76,7 @@ const Navbar = () => {
               <Link
                 key={name}
                 to={`/${name === "Home" ? "" : name.toLowerCase()}`}
-                className={`relative font-medium text-sm xl:text-base text-transparent bg-clip-text bg-gradient-to-r from-[#1E3A8A] to-[#38BDF8] transition duration-300 ${
+                className={`relative font-bold text-md xl:text-base text-transparent bg-clip-text bg-gradient-to-l from-[#acb8d6] to-[#38BDF8] transition duration-300 ${
                   isActive ? "font-extrabold" : "opacity-80"
                 }`}
               >

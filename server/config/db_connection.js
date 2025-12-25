@@ -1,6 +1,6 @@
-require('dotenv').config({ path: '../.env' });
-
 const mongoose = require("mongoose");
+
+console.log(process.env.DB_URL);
 
 const connectDB = async () => {
     try {
@@ -11,4 +11,4 @@ const connectDB = async () => {
     }
 };
 
-connectDB();
+module.exports = connectDB;

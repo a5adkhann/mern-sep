@@ -21,7 +21,7 @@ const AboutSection = () => {
         >
           About{" "}
           <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-500 text-transparent bg-clip-text">
-            Athletix
+            AthLetix
           </span>
         </motion.h2>
 
@@ -32,7 +32,7 @@ const AboutSection = () => {
           transition={{ delay: 0.3, duration: 1 }}
           className="text-gray-300 max-w-3xl mx-auto text-lg leading-relaxed mb-16"
         >
-          Athletix is your ultimate fitness partner — empowering you to track workouts, 
+          AthLetix is your ultimate fitness partner — empowering you to track workouts, 
           monitor progress, and stay consistent with science-driven insights. 
           Whether you’re a beginner or a pro athlete, we’re here to make every rep count.
         </motion.p>
@@ -89,7 +89,7 @@ const AboutSection = () => {
         {/* ⚡ CTA */}
         <motion.div whileHover={{ scale: 1.05 }} className="mt-16">
           <button className="px-10 py-4 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full text-black font-semibold hover:shadow-[0_0_35px_rgba(59,130,246,0.7)] transition-all">
-            Join the Athletix Revolution
+            Join the AthLetix Revolution
           </button>
         </motion.div>
       </div>

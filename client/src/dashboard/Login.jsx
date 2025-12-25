@@ -1,9 +1,35 @@
 // src/Login.jsx
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 export default function Login() {
   const GRADIENT = "linear-gradient(90deg, #1E3A8A, #38BDF8)";
+  const navigate = useNavigate();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post("http://localhost:1000/api/login", {
+        email,
+        password,
+      });
+
+      toast.success(response.data.message);
+
+      localStorage.setItem("user", JSON.stringify(response.data.user));
+
+        location.assign("/dashboard"); 
+
+    } catch (err) {
+      toast.error(err.response?.data?.message || "Login failed");
+    }
+  };
 
   return (
     <div
@@ -12,41 +38,41 @@ export default function Login() {
         backgroundImage: "url('fitness.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
       }}
     >
-      <div
-        className="rounded-3xl shadow-2xl p-6 bg-black/40 max-w-md w-full mx-4"
-        style={{
-          border: "1px solid rgba(30,58,138,0.1)",
-          backdropFilter: "blur(2px)",
-        }}
-      >
+      <div className="rounded-3xl shadow-2xl p-6 bg-black/40 max-w-md w-full mx-4">
         <h3
-          style={{ background: GRADIENT, WebkitBackgroundClip: "text", color: "transparent" }}
+          style={{
+            background: GRADIENT,
+            WebkitBackgroundClip: "text",
+            color: "transparent",
+          }}
           className="text-xl font-bold mb-3 text-center"
         >
           Welcome Back
         </h3>
 
-        <form className="space-y-4" noValidate>
+        <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            placeholder="Email"
             type="email"
-            className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl bg-black/60  text-white"
           />
+
           <input
-            placeholder="Password"
             type="password"
-            className="w-full px-4 py-3 rounded-xl bg-black/60 border border-[#1E3A8A]/10 placeholder-[#aaaaaa] text-white outline-none"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full px-4 py-3 rounded-xl bg-black/60  text-white"
           />
+
           <button
             type="submit"
-            className="w-full py-3 rounded-xl font-bold mt-2 hover:cursor-pointer transition"
-            style={{
-              background: GRADIENT,
-              color: "#fff",
-            }}
+            className="w-full py-3 rounded-xl font-bold"
+            style={{ background: GRADIENT, color: "#fff" }}
           >
             Sign In
           </button>

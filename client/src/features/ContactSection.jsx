@@ -22,7 +22,7 @@ const ContactSection = () => {
   };
 
   const contactInfo = [
-    { icon: <Mail className="w-6 h-6" />, title: "Email Us", detail: "support@fittrack.com", link: "mailto:support@fittrack.com" },
+    { icon: <Mail className="w-6 h-6" />, title: "Email Us", detail: "support@athletix.com", link: "mailto:support@fittrack.com" },
     { icon: <Phone className="w-6 h-6" />, title: "Call Us", detail: "+92 300 1234567", link: "tel:+923001234567" },
     { icon: <MapPin className="w-6 h-6" />, title: "Visit Us", detail: "Karachi, Pakistan", link: "#" },
     { icon: <Clock className="w-6 h-6" />, title: "Working Hours", detail: "Mon - Sat: 9AM - 6PM", link: "#" },

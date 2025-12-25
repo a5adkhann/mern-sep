@@ -14,7 +14,7 @@ const MissionVision = () => {
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-black backdrop-blur-sm"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
         {/* Heading */}
@@ -80,7 +80,7 @@ const MissionVision = () => {
             className="rounded-3xl overflow-hidden border-2 border-blue-400/30 shadow-[0_0_40px_rgba(56,189,248,0.15)]"
           >
             <img
-              src="https://images.unsplash.com/photo-1605296867304-46d5465a13f1?auto=format&fit=crop&w=1600&q=80"
+              src="https://i.pinimg.com/1200x/25/e5/79/25e57974528307d6847b335449f9046f.jpg"
               alt="Fitness Motivation"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />
@@ -96,7 +96,7 @@ const MissionVision = () => {
             <h3 className="text-3xl font-bold text-blue-400">We Believe in Progress, Not Perfection</h3>
             <p className="text-gray-300 leading-relaxed text-sm md:text-base">
               Every step counts. Whether it’s a 5-minute jog or a full workout session — consistency is what makes you stronger.  
-              Athletix rack is your daily motivation partner — tracking your effort, your nutrition, and your evolution.
+              AthLetix rack is your daily motivation partner — tracking your effort, your nutrition, and your evolution.
             </p>
 
             <div className="flex flex-wrap gap-6 mt-8">

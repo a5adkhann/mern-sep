@@ -1,10 +1,13 @@
 // src/Dashboard/components/TopNavbar.jsx
 import React from 'react';
 import { Bell, Search, Sun, CheckCircle, Trash2, Target } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const TopNavbar = () => {
   return (
-    <header className="flex items-center justify-between px-6 py-4 bg-gray-900 text-gray-200 border-b border-gray-800">
+    <header style={{
+      background: "linear-gradient(to right, var(--bg-secondary), var(--bg-card))"
+    }} className="flex items-center justify-between px-6 py-4 bg-gray-900 text-gray-200 border-b border-gray-800">
       {/* Search */}
       <form className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
@@ -20,7 +23,7 @@ const TopNavbar = () => {
         {/* Notifications */}
         <div className="relative">
           <button className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
-            <Bell className="w-5 h-5 text-indigo-500" />
+            <Bell className="w-5 h-5 text-cyan-400" />
             <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
               2
             </span>
@@ -69,7 +72,7 @@ const TopNavbar = () => {
 
         {/* Theme Toggle */}
         <button className="p-2 rounded-full bg-gray-800 hover:bg-gray-700 transition">
-          <Sun className="w-5 h-5 text-indigo-500" />
+          <Sun className="w-5 h-5 text-cyan-400" />
         </button>
 
         {/* Profile */}
@@ -80,10 +83,13 @@ const TopNavbar = () => {
             </div>
             <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full border-2 border-gray-800"></div>
           </div>
+          <Link to="profile">
           <div className="text-left">
             <p className="text-sm font-semibold">John Doe</p>
             <p className="text-xs text-gray-400">Fitness Enthusiast</p>
           </div>
+          </Link>
+
         </div>
       </div>
     </header>

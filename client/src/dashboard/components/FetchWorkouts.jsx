@@ -1,29 +1,28 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import axios from 'axios';
+import { useState } from 'react';
+import { useEffect } from 'react';
 
 const FetchWorkouts = () => {
-  const sampleData = [
-    {
-      exerciseName: 'Bench Press',
-      sets: 4,
-      reps: 10,
-      weight: 60,
-      category: 'Chest',
-      tags: 'Strength',
-      date: '2025-12-25',
-      notes: 'Felt strong today'
-    },
-    {
-      exerciseName: 'Squats',
-      sets: 5,
-      reps: 8,
-      weight: 80,
-      category: 'Legs',
-      tags: 'Power',
-      date: '2025-12-24',
-      notes: 'Good form'
-    }
-  ];
+
+  const [workouts, setWorkouts] = useState([]);
+
+  const fetchWorkouts = async () => {
+      try {
+        const res = await axios.get("http://localhost:1000/api/workouts");
+        setWorkouts(res.data.workouts);
+        console.log(res.data);
+      } catch (error) {
+        console.error("Error fetching workouts", error);
+      }
+    };
+
+  useEffect(() => {
+
+    fetchWorkouts();
+  }, [workouts]);
+  
 
   return (
     <motion.div
@@ -47,7 +46,7 @@ const FetchWorkouts = () => {
           </tr>
         </thead>
         <tbody className="divide-y divide-gray-700">
-          {sampleData.map((workout, index) => (
+          {workouts.map((workout, index) => (
             <tr key={index} className="hover:bg-gray-700 transition-colors">
               <td className="px-4 py-2">{workout.exerciseName}</td>
               <td className="px-4 py-2">{workout.sets}</td>

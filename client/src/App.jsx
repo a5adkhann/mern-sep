@@ -7,7 +7,7 @@ import AppLayout from "./AppLayout";
 import DashboardLayout from "./dashboard/DashboardLayout";
 import Register from "./dashboard/Register";
 import Login from "./dashboard/Login";
-import { Toaster } from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import Profile from "./dashboard/pages/Profile";
 import Workouts from "./dashboard/pages/Workouts";
 import Nutritions from "./dashboard/pages/Nutritions";
@@ -23,6 +23,12 @@ const App = () => {
   const logoutUser = () => {
     localStorage.removeItem("user");
     setLoggedUser("");
+    toast.error("Logged Out Successfully");
+  }
+
+  const loginUser = (data) => {
+    localStorage.setItem("user", JSON.stringify(data));
+    setLoggedUser(data);
   }
   return (
     <>
@@ -35,9 +41,9 @@ const App = () => {
           </Route>
 
           <Route path="/register" element={<Register />}></Route>
-          <Route path="/login" element={<Login />}></Route>
+          <Route path="/login" element={<Login loginUser = {loginUser}/>}></Route>
 
-          <Route path="/dashboard" element={ loggedUser ? <DashboardLayout logoutUser = {logoutUser} /> : <Navigate to="/login"/>}>
+          <Route path="/dashboard" element={ loggedUser ? <DashboardLayout logoutUser = {logoutUser}/> : <Navigate to="/login"/>}>
                  <Route path="profile" element={<Profile />}></Route>
                  <Route path="workouts" element={<Workouts />}></Route>
                  <Route path="nutrition" element={<Nutritions />}></Route>

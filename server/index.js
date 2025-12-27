@@ -3,6 +3,7 @@ const connectDB = require("./config/db_connection");
 const User = require("./models/users");
 const cors = require("cors");
 const multer = require("multer");
+const Workout = require("./models/workout");
 require("dotenv").config();
 
 const app = express();
@@ -63,6 +64,26 @@ app.post("/api/login", async (req, res) => {
     user,
   });
 });
+
+
+app.post("/api/addworkout", async (req, res) => {
+  try {
+    await Workout.insertOne(req.body);
+    res.status(200).send({message: "Workout added succcessfully"});
+  } catch (error) {
+    res.status(200).send({ error: error.message });
+  }
+});
+
+app.get("/api/workouts", async (req, res) => {
+  try {
+    const workouts = await Workout.find().sort({ date: -1 });
+    res.status(200).send({workouts});
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 
 app.listen(process.env.PORT || 1000, () => {

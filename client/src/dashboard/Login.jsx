@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 
-export default function Login() {
+export default function Login({loginUser}) {
   const GRADIENT = "linear-gradient(90deg, #1E3A8A, #38BDF8)";
   const navigate = useNavigate();
 
@@ -22,12 +22,13 @@ export default function Login() {
 
       toast.success(response.data.message);
 
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      loginUser(response.data.user);
 
-        location.assign("/dashboard"); 
+      navigate("/dashboard");
 
     } catch (err) {
       toast.error(err.response?.data?.message || "Login failed");
+      console.log(err);
     }
   };
 
